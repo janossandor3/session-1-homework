@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import type { Movie } from '../types'
+import { useI18n } from '../../../i18n/useI18n'
 
 interface MovieFormProps {
   onAddMovie: (movie: Movie) => void
 }
 
 export function MovieForm({ onAddMovie }: MovieFormProps) {
+  const { t } = useI18n()
   const [formData, setFormData] = useState({
     title: '',
     rating: 5,
@@ -24,7 +26,7 @@ export function MovieForm({ onAddMovie }: MovieFormProps) {
     e.preventDefault()
 
     if (!formData.title.trim() || !formData.category.trim()) {
-      alert('Kérlek töltsd ki az összes mezőt!')
+      alert(t('form.validation'))
       return
     }
 
@@ -43,22 +45,22 @@ export function MovieForm({ onAddMovie }: MovieFormProps) {
 
   return (
     <div>
-      <h2>Új Film Hozzáadása</h2>
+      <h2>{t('form.title')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="title">Cím:</label>
+          <label htmlFor="title">{t('form.labels.movieTitle')}</label>
           <input
             type="text"
             id="title"
             name="title"
             value={formData.title}
             onChange={handleInputChange}
-            placeholder="Add meg a film címét..."
+            placeholder={t('form.placeholders.movieTitle')}
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="rating">Értékelés (0-10):</label>
+          <label htmlFor="rating">{t('form.labels.rating')}</label>
           <input
             type="number"
             id="rating"
@@ -71,24 +73,24 @@ export function MovieForm({ onAddMovie }: MovieFormProps) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="category">Kategória:</label>
+          <label htmlFor="category">{t('form.labels.category')}</label>
           <select
             id="category"
             name="category"
             value={formData.category}
             onChange={handleInputChange}
           >
-            <option value="">-- Válassz kategóriát --</option>
-            <option value="akcio">Akció</option>
-            <option value="drama">Dráma</option>
-            <option value="komediar">Komédia</option>
-            <option value="horror">Horror</option>
-            <option value="romantika">Romantika</option>
-            <option value="scifi">Sci-Fi</option>
+            <option value="">{t('form.options.selectCategory')}</option>
+            <option value="action">{t('form.options.action')}</option>
+            <option value="drama">{t('form.options.drama')}</option>
+            <option value="comedy">{t('form.options.comedy')}</option>
+            <option value="horror">{t('form.options.horror')}</option>
+            <option value="romance">{t('form.options.romance')}</option>
+            <option value="scifi">{t('form.options.scifi')}</option>
           </select>
         </div>
 
-        <button type="submit">Hozzáadás</button>
+        <button type="submit">{t('form.button')}</button>
       </form>
     </div>
   )

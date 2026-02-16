@@ -1,15 +1,18 @@
 import type { Movie } from '../types'
+import { useI18n } from '../../../i18n/useI18n'
 
 interface MovieListProps {
   movies: Movie[]
 }
 
 export function MovieList({ movies }: MovieListProps) {
+  const { t } = useI18n()
+
   return (
     <div>
-      <h2>Filmek ({movies.length})</h2>
+      <h2>{t('list.title')} ({movies.length})</h2>
       {movies.length === 0 ? (
-        <p>Nincs még film a katalógusban.</p>
+        <p>{t('list.empty')}</p>
       ) : (
         <ul>
           {movies.map((movie) => (

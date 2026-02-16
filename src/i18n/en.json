@@ -1,0 +1,31 @@
+{
+  "app": {
+    "title": "Movie Catalog"
+  },
+  "form": {
+    "title": "Add New Movie",
+    "labels": {
+      "movieTitle": "Title:",
+      "rating": "Rating (0-10):",
+      "category": "Category:"
+    },
+    "placeholders": {
+      "movieTitle": "Enter the movie title..."
+    },
+    "options": {
+      "selectCategory": "-- Select a category --",
+      "action": "Action",
+      "drama": "Drama",
+      "comedy": "Comedy",
+      "horror": "Horror",
+      "romance": "Romance",
+      "scifi": "Sci-Fi"
+    },
+    "button": "Add",
+    "validation": "Please fill in all fields!"
+  },
+  "list": {
+    "title": "Movies",
+    "empty": "No movies in the catalog yet."
+  }
+}

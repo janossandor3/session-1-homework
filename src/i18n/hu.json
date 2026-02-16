@@ -1,0 +1,31 @@
+{
+  "app": {
+    "title": "Film Katalógus"
+  },
+  "form": {
+    "title": "Új Film Hozzáadása",
+    "labels": {
+      "movieTitle": "Cím:",
+      "rating": "Értékelés (0-10):",
+      "category": "Kategória:"
+    },
+    "placeholders": {
+      "movieTitle": "Add meg a film címét..."
+    },
+    "options": {
+      "selectCategory": "-- Válassz kategóriát --",
+      "action": "Akció",
+      "drama": "Dráma",
+      "comedy": "Komédia",
+      "horror": "Horror",
+      "romance": "Romantika",
+      "scifi": "Sci-Fi"
+    },
+    "button": "Hozzáadás",
+    "validation": "Kérlek töltsd ki az összes mezőt!"
+  },
+  "list": {
+    "title": "Filmek",
+    "empty": "Nincs még film a katalógusban."
+  }
+}
