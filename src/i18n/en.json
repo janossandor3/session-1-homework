@@ -26,6 +26,7 @@
   },
   "list": {
     "title": "Movies",
-    "empty": "No movies in the catalog yet."
+    "empty": "No movies in the catalog yet.",
+    "deleteButton": "Delete"
   }
 }

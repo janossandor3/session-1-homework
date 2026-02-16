@@ -4,9 +4,10 @@ import { MovieItem } from './MovieItem'
 
 interface MovieListProps {
   movies: Movie[]
+  onDeleteMovie: (id: string) => void
 }
 
-export function MovieList({ movies }: MovieListProps) {
+export function MovieList({ movies, onDeleteMovie }: MovieListProps) {
   const { t } = useI18n()
 
   return (
@@ -17,7 +18,7 @@ export function MovieList({ movies }: MovieListProps) {
       ) : (
         <div className="movie-list">
           {movies.map((movie) => (
-            <MovieItem key={movie.id} movie={movie} />
+            <MovieItem key={movie.id} movie={movie} onDelete={onDeleteMovie} />
           ))}
         </div>
       )}

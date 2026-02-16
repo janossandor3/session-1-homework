@@ -26,6 +26,7 @@
   },
   "list": {
     "title": "Filmek",
-    "empty": "Nincs még film a katalógusban."
+    "empty": "Nincs még film a katalógusban.",
+    "deleteButton": "Törlés"
   }
 }

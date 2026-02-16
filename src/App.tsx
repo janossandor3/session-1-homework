@@ -13,6 +13,10 @@ function App() {
     setMovies([...movies, newMovie])
   }
 
+  const handleDeleteMovie = (id: string) => {
+    setMovies(movies.filter((movie) => movie.id !== id))
+  }
+
   return (
     <div className="container">
       <h1>{t('app.title')}</h1>
@@ -21,7 +25,7 @@ function App() {
           <MovieForm onAddMovie={handleAddMovie} />
         </div>
         <div className="list-section">
-          <MovieList movies={movies} />
+          <MovieList movies={movies} onDeleteMovie={handleDeleteMovie} />
         </div>
       </div>
     </div>

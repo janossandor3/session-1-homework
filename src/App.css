@@ -174,9 +174,10 @@ li {
   margin-left: 10px;
 }
 
-.movie-category {
+.movie-buttons {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
 }
 
@@ -187,4 +188,20 @@ li {
   border-radius: 20px;
   font-size: 13px;
   font-weight: 500;
+}
+
+.delete-button {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.delete-button:hover {
+  background: #c0392b;
 }
