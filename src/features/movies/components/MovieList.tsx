@@ -1,5 +1,6 @@
 import type { Movie } from '../types'
 import { useI18n } from '../../../i18n/useI18n'
+import { MovieItem } from './MovieItem'
 
 interface MovieListProps {
   movies: Movie[]
@@ -14,11 +15,11 @@ export function MovieList({ movies }: MovieListProps) {
       {movies.length === 0 ? (
         <p>{t('list.empty')}</p>
       ) : (
-        <ul>
+        <div className="movie-list">
           {movies.map((movie) => (
-            <li key={movie.id}>{movie.title}</li>
+            <MovieItem key={movie.id} movie={movie} />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   )
