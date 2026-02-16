@@ -3,7 +3,8 @@
     "title": "Film Katalógus"
   },
   "form": {
-    "title": "Új Film Hozzáadása",
+    "addTitle": "Új Film Hozzáadása",
+    "editTitle": "Film Szerkesztése",
     "labels": {
       "movieTitle": "Cím:",
       "rating": "Értékelés (0-10):",
@@ -21,12 +22,15 @@
       "romance": "Romantika",
       "scifi": "Sci-Fi"
     },
-    "button": "Hozzáadás",
+    "addButton": "Hozzáadás",
+    "saveButton": "Mentés",
+    "cancelButton": "Mégse",
     "validation": "Kérlek töltsd ki az összes mezőt!"
   },
   "list": {
     "title": "Filmek",
     "empty": "Nincs még film a katalógusban.",
+    "editButton": "Szerkesztés",
     "deleteButton": "Törlés"
   }
 }

@@ -3,10 +3,11 @@ import { useI18n } from '../../../i18n/useI18n'
 
 interface MovieItemProps {
   movie: Movie
+  onEdit: (movie: Movie) => void
   onDelete: (id: string) => void
 }
 
-export function MovieItem({ movie, onDelete }: MovieItemProps) {
+export function MovieItem({ movie, onEdit, onDelete }: MovieItemProps) {
   const { t } = useI18n()
 
   const renderRating = (rating: number) => {
@@ -23,9 +24,14 @@ export function MovieItem({ movie, onDelete }: MovieItemProps) {
       </div>
       <div className="movie-buttons">
         <span className="category-badge">{movie.category}</span>
-        <button className="delete-button" onClick={() => onDelete(movie.id)}>
-          {t('list.deleteButton')}
-        </button>
+        <div className="action-buttons">
+          <button className="edit-button" onClick={() => onEdit(movie)}>
+            {t('list.editButton')}
+          </button>
+          <button className="delete-button" onClick={() => onDelete(movie.id)}>
+            {t('list.deleteButton')}
+          </button>
+        </div>
       </div>
     </div>
   )

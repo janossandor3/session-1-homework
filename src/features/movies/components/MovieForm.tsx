@@ -1,18 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Movie } from '../types'
 import { useI18n } from '../../../i18n/useI18n'
 
 interface MovieFormProps {
+  editingMovie: Movie | null
   onAddMovie: (movie: Movie) => void
+  onUpdateMovie: (movie: Movie) => void
+  onCancel: () => void
 }
 
-export function MovieForm({ onAddMovie }: MovieFormProps) {
+export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }: MovieFormProps) {
   const { t } = useI18n()
   const [formData, setFormData] = useState({
     title: '',
     rating: 5,
     category: '',
   })
+
+  useEffect(() => {
+    if (editingMovie) {
+      setFormData({
+        title: editingMovie.title,
+        rating: editingMovie.rating,
+        category: editingMovie.category,
+      })
+    } else {
+      setFormData({ title: '', rating: 5, category: '' })
+    }
+  }, [editingMovie])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -30,22 +45,31 @@ export function MovieForm({ onAddMovie }: MovieFormProps) {
       return
     }
 
-    const newMovie: Movie = {
-      id: crypto.randomUUID(),
-      created: new Date(),
-      title: formData.title,
-      rating: formData.rating,
-      category: formData.category,
+    if (editingMovie) {
+      onUpdateMovie({
+        id: editingMovie.id,
+        created: editingMovie.created,
+        title: formData.title,
+        rating: formData.rating,
+        category: formData.category,
+      })
+    } else {
+      const newMovie: Movie = {
+        id: crypto.randomUUID(),
+        created: new Date(),
+        title: formData.title,
+        rating: formData.rating,
+        category: formData.category,
+      }
+      onAddMovie(newMovie)
     }
-
-    onAddMovie(newMovie)
 
     setFormData({ title: '', rating: 5, category: '' })
   }
 
   return (
     <div>
-      <h2>{t('form.title')}</h2>
+      <h2>{editingMovie ? t('form.editTitle') : t('form.addTitle')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">{t('form.labels.movieTitle')}</label>
@@ -90,7 +114,16 @@ export function MovieForm({ onAddMovie }: MovieFormProps) {
           </select>
         </div>
 
-        <button type="submit">{t('form.button')}</button>
+        <div className="form-buttons">
+          <button type="submit" className="submit-button">
+            {editingMovie ? t('form.saveButton') : t('form.addButton')}
+          </button>
+          {editingMovie && (
+            <button type="button" className="cancel-button" onClick={onCancel}>
+              {t('form.cancelButton')}
+            </button>
+          )}
+        </div>
       </form>
     </div>
   )

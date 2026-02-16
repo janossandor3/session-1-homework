@@ -3,7 +3,8 @@
     "title": "Movie Catalog"
   },
   "form": {
-    "title": "Add New Movie",
+    "addTitle": "Add New Movie",
+    "editTitle": "Edit Movie",
     "labels": {
       "movieTitle": "Title:",
       "rating": "Rating (0-10):",
@@ -21,12 +22,15 @@
       "romance": "Romance",
       "scifi": "Sci-Fi"
     },
-    "button": "Add",
+    "addButton": "Add",
+    "saveButton": "Save",
+    "cancelButton": "Cancel",
     "validation": "Please fill in all fields!"
   },
   "list": {
     "title": "Movies",
     "empty": "No movies in the catalog yet.",
+    "editButton": "Edit",
     "deleteButton": "Delete"
   }
 }
