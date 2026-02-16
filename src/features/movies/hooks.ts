@@ -2,14 +2,10 @@ import { useState, useEffect } from 'react'
 import type { Movie } from './types'
 
 export function useMovies() {
-  const [movies, setMovies] = useState<Movie[]>([])
-
-  useEffect(() => {
-    const savedMovies = localStorage.getItem('movies')
-    if (savedMovies) {
-      setMovies(JSON.parse(savedMovies))
-    }
-  }, [])
+  const [movies, setMovies] = useState<Movie[]>(() => {
+    const saved = localStorage.getItem('movies')
+    return saved ? JSON.parse(saved) : []
+  })
 
   useEffect(() => {
     localStorage.setItem('movies', JSON.stringify(movies))

@@ -48,7 +48,6 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
     if (editingMovie) {
       onUpdateMovie({
         id: editingMovie.id,
-        created: editingMovie.created,
         title: formData.title,
         rating: formData.rating,
         category: formData.category,
@@ -56,7 +55,6 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
     } else {
       const newMovie: Movie = {
         id: crypto.randomUUID(),
-        created: new Date(),
         title: formData.title,
         rating: formData.rating,
         category: formData.category,
