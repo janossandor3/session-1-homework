@@ -1,26 +1,9 @@
-import { useState, useEffect } from 'react'
 import './App.css'
-
-interface Movie {
-  id: string
-  title: string
-  rating: number
-  category: string
-}
+import { useMovies } from './features/movies'
+import type { Movie } from './features/movies'
 
 function App() {
-  const [movies, setMovies] = useState<Movie[]>([])
-
-  useEffect(() => {
-    const savedMovies = localStorage.getItem('movies')
-    if (savedMovies) {
-      setMovies(JSON.parse(savedMovies))
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('movies', JSON.stringify(movies))
-  }, [movies])
+  const { movies } = useMovies()
 
   return (
     <div className="container">
