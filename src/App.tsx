@@ -1,34 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
+interface Movie {
+  id: string
+  title: string
+  rating: number
+  category: string
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [movies, setMovies] = useState<Movie[]>([])
+
+  useEffect(() => {
+    const savedMovies = localStorage.getItem('movies')
+    if (savedMovies) {
+      setMovies(JSON.parse(savedMovies))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('movies', JSON.stringify(movies))
+  }, [movies])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="container">
+      <h1>Film Katalógus</h1>
+      <MovieForm onAddMovie={() => {}} />
+      <MovieList movies={movies} />
+    </div>
+  )
+}
+
+function MovieForm({ onAddMovie }: { onAddMovie: () => void }) {
+  return (
+    <div>
+      <h2>Új Film Hozzáadása</h2>
+      <p>Itt lesz a forma...</p>
+    </div>
+  )
+}
+
+function MovieList({ movies }: { movies: Movie[] }) {
+  return (
+    <div>
+      <h2>Filmek ({movies.length})</h2>
+      {movies.length === 0 ? (
+        <p>Nincs még film a katalógusban.</p>
+      ) : (
+        <ul>
+          {movies.map((movie) => (
+            <li key={movie.id}>{movie.title}</li>
+          ))}
+        </ul>
+      )}
+    </div>
   )
 }
 
