@@ -1,18 +1,59 @@
 .container {
-  max-width: 800px;
+  width: 100%;
+  max-width: 2800px;
   margin: 0 auto;
   padding: 20px;
   font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
   color: #333;
   text-align: center;
+  margin-bottom: 40px;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  width: 100%;
+}
+
+.form-section {
+  flex: 1;
+  width: 100%;
+}
+
+.list-section {
+  flex: 1;
+  width: 100%;
+}
+
+@media (min-width: 1000px) {
+  .app-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .form-section {
+    flex: 0 1 45%;
+    min-width: 0;
+  }
+
+  .list-section {
+    flex: 1 1 55%;
+    min-width: 0;
+  }
 }
 
 h2 {
   color: #555;
-  margin-top: 30px;
+  margin-top: 0;
   border-bottom: 2px solid #ddd;
   padding-bottom: 10px;
 }
@@ -26,6 +67,8 @@ form {
   padding: 20px;
   border-radius: 8px;
   margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group {
@@ -42,11 +85,13 @@ label {
 
 input,
 select {
+  width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 input:focus,
@@ -91,6 +136,7 @@ li {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 15px;
   margin-top: 15px;
+  width: 100%;
 }
 
 .movie-item {

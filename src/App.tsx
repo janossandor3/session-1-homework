@@ -16,8 +16,14 @@ function App() {
   return (
     <div className="container">
       <h1>{t('app.title')}</h1>
-      <MovieForm onAddMovie={handleAddMovie} />
-      <MovieList movies={movies} />
+      <div className="app-layout">
+        <div className="form-section">
+          <MovieForm onAddMovie={handleAddMovie} />
+        </div>
+        <div className="list-section">
+          <MovieList movies={movies} />
+        </div>
+      </div>
     </div>
   )
 }
