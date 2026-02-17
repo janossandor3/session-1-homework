@@ -14,7 +14,7 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
   const { t } = useI18n()
   const [formData, setFormData] = useState({
     title: '',
-    rating: 5,
+    rating: '',
     category: '',
     description: '',
   })
@@ -23,12 +23,12 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
     if (editingMovie) {
       setFormData({
         title: editingMovie.title,
-        rating: editingMovie.rating,
+        rating: String(editingMovie.rating),
         category: editingMovie.category,
         description: editingMovie.description,
       })
     } else {
-      setFormData({ title: '', rating: 5, category: '', description: '' })
+      setFormData({ title: '', rating: '', category: '', description: '' })
     }
   }, [editingMovie])
 
@@ -36,23 +36,25 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'rating' ? Number(value) : value,
+      [name]: value,
     }))
   }
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!formData.title.trim() || !formData.category.trim()) {
+    if (!formData.title.trim() || !formData.category.trim() || !formData.rating) {
       alert(t('form.validation'))
       return
     }
+
+    const ratingNumber = Number(formData.rating)
 
     if (editingMovie) {
       onUpdateMovie({
         id: editingMovie.id,
         title: formData.title,
-        rating: formData.rating,
+        rating: ratingNumber,
         category: formData.category,
         description: formData.description,
       })
@@ -60,14 +62,14 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
       const newMovie: Movie = {
         id: crypto.randomUUID(),
         title: formData.title,
-        rating: formData.rating,
+        rating: ratingNumber,
         category: formData.category,
         description: formData.description,
       }
       onAddMovie(newMovie)
     }
 
-    setFormData({ title: '', rating: 5, category: '', description: '' })
+    setFormData({ title: '', rating: '', category: '', description: '' })
   }
 
   return (
