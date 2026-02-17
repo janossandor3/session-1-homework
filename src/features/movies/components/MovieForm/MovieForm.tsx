@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import type { Movie } from '../types'
-import { useI18n } from '../../../i18n/useI18n'
+import type { Movie } from '../../types'
+import { useI18n } from '../../../../i18n/useI18n'
+import './MovieForm.css'
 
 interface MovieFormProps {
   editingMovie: Movie | null

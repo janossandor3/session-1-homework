@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import type { Movie } from '../types'
-import { useI18n } from '../../../i18n/useI18n'
-import { MovieItem } from './MovieItem'
-import { CategoryFilter } from './CategoryFilter'
+import type { Movie } from '../../types'
+import { useI18n } from '../../../../i18n/useI18n'
+import { MovieItem } from '../MovieItem/MovieItem'
+import { CategoryFilter } from '../CategoryFilter/CategoryFilter'
+import './MovieList.css'
 
 interface MovieListProps {
   movies: Movie[]

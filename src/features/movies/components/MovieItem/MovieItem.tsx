@@ -1,5 +1,6 @@
-import type { Movie } from '../types'
-import { useI18n } from '../../../i18n/useI18n'
+import type { Movie } from '../../types'
+import { useI18n } from '../../../../i18n/useI18n'
+import './MovieItem.css'
 
 interface MovieItemProps {
   movie: Movie

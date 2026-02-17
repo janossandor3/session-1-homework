@@ -2,8 +2,8 @@ import './App.css'
 import { useState } from 'react'
 import { useMovies } from './features/movies'
 import type { Movie } from './features/movies'
-import { MovieForm } from './features/movies/components/MovieForm'
-import { MovieList } from './features/movies/components/MovieList'
+import { MovieForm } from './features/movies/components/MovieForm/MovieForm'
+import { MovieList } from './features/movies/components/MovieList/MovieList'
 import { useI18n } from './i18n/useI18n'
 
 function App() {
