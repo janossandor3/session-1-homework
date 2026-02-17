@@ -17,6 +17,7 @@
     },
     "options": {
       "selectCategory": "-- Select a category --",
+      "no_filter": "All",
       "action": "Action",
       "drama": "Drama",
       "comedy": "Comedy",

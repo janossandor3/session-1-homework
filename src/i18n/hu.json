@@ -17,6 +17,7 @@
     },
     "options": {
       "selectCategory": "-- Válassz kategóriát --",
+      "no_filter": "Összes",
       "action": "Akció",
       "drama": "Dráma",
       "comedy": "Komédia",
