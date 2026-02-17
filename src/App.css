@@ -84,7 +84,8 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -95,7 +96,8 @@ select {
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   outline: none;
   border-color: #4a90e2;
   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
@@ -150,6 +152,13 @@ button:hover {
   color: #333;
   flex: 1;
   word-break: break-word;
+}
+
+.movie-description {
+  margin: 10px 0 15px 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .movie-rating {

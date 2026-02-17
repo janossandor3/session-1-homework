@@ -22,6 +22,9 @@ export function MovieItem({ movie, onEdit, onDelete }: MovieItemProps) {
         <h3>{movie.title}</h3>
         <span className="movie-rating">{renderRating(movie.rating)} {movie.rating}/10</span>
       </div>
+      {movie.description && (
+        <p className="movie-description">{movie.description}</p>
+      )}
       <div className="movie-buttons">
         <span className="category-badge">{movie.category}</span>
         <div className="action-buttons">

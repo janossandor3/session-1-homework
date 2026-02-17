@@ -8,10 +8,12 @@
     "labels": {
       "movieTitle": "Cím:",
       "rating": "Értékelés (0-10):",
-      "category": "Kategória:"
+      "category": "Kategória:",
+      "description": "Leírás:"
     },
     "placeholders": {
-      "movieTitle": "Add meg a film címét..."
+      "movieTitle": "Add meg a film címét...",
+      "description": "Add meg a film leírását..."
     },
     "options": {
       "selectCategory": "-- Válassz kategóriát --",

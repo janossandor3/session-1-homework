@@ -8,10 +8,12 @@
     "labels": {
       "movieTitle": "Title:",
       "rating": "Rating (0-10):",
-      "category": "Category:"
+      "category": "Category:",
+      "description": "Description:"
     },
     "placeholders": {
-      "movieTitle": "Enter the movie title..."
+      "movieTitle": "Enter the movie title...",
+      "description": "Enter the movie description..."
     },
     "options": {
       "selectCategory": "-- Select a category --",

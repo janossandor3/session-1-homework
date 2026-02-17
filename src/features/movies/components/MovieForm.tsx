@@ -15,6 +15,7 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
     title: '',
     rating: 5,
     category: '',
+    description: '',
   })
 
   useEffect(() => {
@@ -23,13 +24,14 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
         title: editingMovie.title,
         rating: editingMovie.rating,
         category: editingMovie.category,
+        description: editingMovie.description,
       })
     } else {
-      setFormData({ title: '', rating: 5, category: '' })
+      setFormData({ title: '', rating: 5, category: '', description: '' })
     }
   }, [editingMovie])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -51,6 +53,7 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
         title: formData.title,
         rating: formData.rating,
         category: formData.category,
+        description: formData.description,
       })
     } else {
       const newMovie: Movie = {
@@ -58,11 +61,12 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
         title: formData.title,
         rating: formData.rating,
         category: formData.category,
+        description: formData.description,
       }
       onAddMovie(newMovie)
     }
 
-    setFormData({ title: '', rating: 5, category: '' })
+    setFormData({ title: '', rating: 5, category: '', description: '' })
   }
 
   return (
@@ -110,6 +114,18 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
             <option value="romance">{t('form.options.romance')}</option>
             <option value="scifi">{t('form.options.scifi')}</option>
           </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="description">{t('form.labels.description')}</label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            placeholder={t('form.placeholders.description')}
+            rows={4}
+          />
         </div>
 
         <div className="form-buttons">
