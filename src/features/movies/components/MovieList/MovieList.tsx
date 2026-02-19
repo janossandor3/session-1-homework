@@ -12,23 +12,29 @@ interface MovieListProps {
 }
 
 export function MovieList({ movies, onEditMovie, onDeleteMovie }: MovieListProps) {
-  const { t } = useI18n()
+  const { localized } = useI18n()
   const [selectedCategory, setSelectedCategory] = useState('')
-
   const filteredMovies = selectedCategory
     ? movies.filter((movie) => movie.category === selectedCategory)
     : movies
 
   return (
     <div>
-      <h2>{t('list.title')} ({filteredMovies.length})</h2>
+      <h2>{localized('list.title')} ({filteredMovies.length})</h2>
+
       <CategoryFilter selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} />
+
       {filteredMovies.length === 0 ? (
-        <p>{t('list.empty')}</p>
+        <p>{localized('list.empty')}</p>
       ) : (
         <div className="movie-list">
           {filteredMovies.map((movie) => (
-            <MovieItem key={movie.id} movie={movie} onEdit={onEditMovie} onDelete={onDeleteMovie} />
+            <MovieItem
+              key={movie.id}
+              movie={movie}
+              onEdit={onEditMovie}
+              onDelete={onDeleteMovie}
+            />
           ))}
         </div>
       )}

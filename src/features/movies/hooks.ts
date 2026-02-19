@@ -13,3 +13,17 @@ export function useMovies() {
 
   return { movies, setMovies }
 }
+
+export function useEditingMovie() {
+  const [editingMovie, setEditingMovie] = useState<Movie | null>(null)
+  
+  function startEditing(movie: Movie) {
+    setEditingMovie(movie)
+  }
+
+  function stopEditing() {
+    setEditingMovie(null)
+  }
+
+  return { editingMovie, startEditing, stopEditing }
+}

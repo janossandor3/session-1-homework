@@ -1,18 +1,13 @@
-/* Global Layout & Base Styles */
-
 .container {
-  width: 100%;
-  max-width: 1400px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 100px;
   margin: 0 auto;
-  padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  min-height: 100vh;
 }
 
 h1 {
-  color: var(--text-primary);
   text-align: center;
   margin-bottom: 50px;
   font-size: 3rem;
@@ -42,7 +37,7 @@ p {
 .app-layout {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 400px;
   align-items: stretch;
   width: 100%;
   flex: 1;
@@ -77,24 +72,6 @@ p {
   }
 }
 
-/* Form Base Styles */
-form {
-  background: var(--bg-primary);
-  padding: 35px;
-  border-radius: var(--radius-lg);
-  width: 100%;
-  box-sizing: border-box;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(99, 102, 241, 0.1);
-}
-
-label {
-  color: var(--text-primary);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.005em;
-}
-
 input,
 select,
 textarea {
@@ -112,7 +89,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
 }
 
 input:hover,
@@ -131,7 +108,6 @@ textarea:focus {
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
-/* Button Base Styles */
 button {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;

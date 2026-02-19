@@ -11,7 +11,8 @@ interface MovieFormProps {
 }
 
 export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }: MovieFormProps) {
-  const { t } = useI18n()
+  const { localized } = useI18n()
+
   const [formData, setFormData] = useState({
     title: '',
     rating: '',
@@ -32,29 +33,27 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
     }
   }, [editingMovie])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }))
   }
-
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  
+  function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+    event.preventDefault()
 
     if (!formData.title.trim() || !formData.category.trim() || !formData.rating) {
-      alert(t('form.validation'))
+      alert(localized('form.validation'))
       return
     }
-
-    const ratingNumber = Number(formData.rating)
 
     if (editingMovie) {
       onUpdateMovie({
         id: editingMovie.id,
         title: formData.title,
-        rating: ratingNumber,
+        rating: Number(formData.rating),
         category: formData.category,
         description: formData.description,
       })
@@ -62,7 +61,7 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
       const newMovie: Movie = {
         id: crypto.randomUUID(),
         title: formData.title,
-        rating: ratingNumber,
+        rating: Number(formData.rating),
         category: formData.category,
         description: formData.description,
       }
@@ -74,22 +73,22 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
 
   return (
     <div>
-      <h2>{editingMovie ? t('form.editTitle') : t('form.addTitle')}</h2>
+      <h2>{editingMovie ? localized('form.editTitle') : localized('form.addTitle')}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="title">{t('form.labels.movieTitle')}</label>
+          <label htmlFor="title">{localized('form.labels.movieTitle')}</label>
           <input
             type="text"
             id="title"
             name="title"
             value={formData.title}
             onChange={handleInputChange}
-            placeholder={t('form.placeholders.movieTitle')}
+            placeholder={localized('form.placeholders.movieTitle')}
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="rating">{t('form.labels.rating')}</label>
+          <label htmlFor="rating">{localized('form.labels.rating')}</label>
           <input
             type="number"
             id="rating"
@@ -102,42 +101,41 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
         </div>
 
         <div className="form-group">
-          <label htmlFor="category">{t('form.labels.category')}</label>
+          <label htmlFor="category">{localized('form.labels.category')}</label>
           <select
             id="category"
             name="category"
             value={formData.category}
             onChange={handleInputChange}
           >
-            <option value="">{t('form.options.selectCategory')}</option>
-            <option value="action">{t('form.options.action')}</option>
-            <option value="drama">{t('form.options.drama')}</option>
-            <option value="comedy">{t('form.options.comedy')}</option>
-            <option value="horror">{t('form.options.horror')}</option>
-            <option value="romance">{t('form.options.romance')}</option>
-            <option value="scifi">{t('form.options.scifi')}</option>
+            <option value="">{localized('form.options.selectCategory')}</option>
+            <option value="action">{localized('form.options.action')}</option>
+            <option value="drama">{localized('form.options.drama')}</option>
+            <option value="comedy">{localized('form.options.comedy')}</option>
+            <option value="horror">{localized('form.options.horror')}</option>
+            <option value="romance">{localized('form.options.romance')}</option>
+            <option value="scifi">{localized('form.options.scifi')}</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label htmlFor="description">{t('form.labels.description')}</label>
+          <label htmlFor="description">{localized('form.labels.description')}</label>
           <textarea
             id="description"
             name="description"
             value={formData.description}
             onChange={handleInputChange}
-            placeholder={t('form.placeholders.description')}
+            placeholder={localized('form.placeholders.description')}
             rows={4}
           />
         </div>
-
         <div className="form-buttons">
           <button type="submit" className="submit-button">
-            {editingMovie ? t('form.saveButton') : t('form.addButton')}
+            {editingMovie ? localized('form.saveButton') : localized('form.addButton')}
           </button>
           {editingMovie && (
             <button type="button" className="cancel-button" onClick={onCancel}>
-              {t('form.cancelButton')}
+              {localized('form.cancelButton')}
             </button>
           )}
         </div>
@@ -145,3 +143,4 @@ export function MovieForm({ editingMovie, onAddMovie, onUpdateMovie, onCancel }:
     </div>
   )
 }
+

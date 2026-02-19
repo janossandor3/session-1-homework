@@ -1,19 +1,15 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
 import en from './en.json'
 import hu from './hu.json'
 
-type Language = 'en' | 'hu'
-
 interface I18nContextType {
-  language: Language
-  setLanguage: (lang: Language) => void
-  t: (key: string) => string
+  readonly localized: (key: string) => string
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
-
 const translations = { en, hu }
+const language = navigator.language.startsWith('hu') ? 'hu' : 'en'
 
 function getNestedValue(obj: Record<string, any>, path: string): string {
   let current: any = obj
@@ -23,20 +19,14 @@ function getNestedValue(obj: Record<string, any>, path: string): string {
   return (current as string) || path
 }
 
-export function I18nProvider({ children }: { children: ReactNode }): React.ReactElement {
-  const [language, setLanguage] = useState<Language>(() => {
-    const browserLang = navigator.language.startsWith('hu') ? 'hu' : 'en'
-    return browserLang
-  })
-
-  const t = (key: string): string => {
+function localized(key: string): string {
     return getNestedValue(translations[language], key)
-  }
+}
 
-  const value: I18nContextType = { language, setLanguage, t }
+export function I18nProvider({ children }: { children: ReactNode }): React.ReactElement {
   return React.createElement(
     I18nContext.Provider,
-    { value },
+    { value: { localized } },
     children
   )
 }
